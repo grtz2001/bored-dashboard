@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+  background: #ede3d2;
+  color: #2a251e;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: oklch(0.6 0.17 38);
+  text-decoration: none;
+  font-weight: 600;
+}
+a:hover {
+  color: oklch(0.5 0.18 34);
+}
+
+input,
+select,
+button {
+  font-family: inherit;
+  font-size: 15px;
+}
+input:focus,
+select:focus {
+  outline: 2px solid oklch(0.72 0.13 48);
+  outline-offset: 1px;
+}
+button {
+  cursor: pointer;
+}
+::placeholder {
+  color: #ab9f8c;
+}
