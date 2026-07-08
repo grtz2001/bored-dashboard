@@ -4,12 +4,14 @@ function ActivityCard({ activity }) {
   return (
     <div className="activity-card">
       <div className="activity-top">
+        {/* Colored category chip — its colors come from the enriched activity */}
         <span
           className="chip"
           style={{ background: activity.chipBg, color: activity.chipText }}
         >
           {activity.typeLabel}
         </span>
+        {/* Price shown as a tier (Free / $ / $$ / $$$), not a raw number */}
         <span className="price-tier">{activity.priceTier}</span>
       </div>
 
@@ -17,6 +19,7 @@ function ActivityCard({ activity }) {
 
       <div className="activity-meta">
         <span>👥 {activity.participantsLabel}</span>
+        {/* Only show the duration separator + value if a duration exists */}
         {activity.duration && (
           <>
             <span className="dot">·</span>
@@ -26,7 +29,9 @@ function ActivityCard({ activity }) {
       </div>
 
       <div className="activity-foot">
+        {/* Badge appears only for kid-friendly activities */}
         {activity.kidFriendly && <span className="kid-badge">★ Kid-friendly</span>}
+        {/* "Learn more" link appears only when the activity has a URL */}
         {activity.hasLink && (
           <a
             className="learn-more"

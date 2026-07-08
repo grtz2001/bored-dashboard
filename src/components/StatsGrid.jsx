@@ -1,4 +1,5 @@
-// A single summary tile.
+// A single summary tile. `tone` becomes part of the CSS class (e.g. "stat-free")
+// so each card gets its own color.
 function StatCard({ tone, value, label }) {
   return (
     <div className={`stat-card stat-${tone}`}>
@@ -8,7 +9,7 @@ function StatCard({ tone, value, label }) {
   );
 }
 
-// The row of four at-a-glance statistics.
+// The row of four at-a-glance statistics, fed by the `stats` object from App.
 function StatsGrid({ stats }) {
   return (
     <div className="stats-grid">

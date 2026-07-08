@@ -7,6 +7,8 @@ function Controls({ search, onSearch, type, onType, kidOnly, onToggleKid }) {
     <div className="controls">
       <div className="search-wrap">
         <span className="search-icon" aria-hidden="true">🔍</span>
+        {/* Controlled input: its value comes from state, and every keystroke
+            calls onSearch so the parent updates and the list re-filters live. */}
         <input
           className="search-input"
           type="search"
@@ -17,6 +19,7 @@ function Controls({ search, onSearch, type, onType, kidOnly, onToggleKid }) {
         />
       </div>
 
+      {/* Category dropdown — options built from the type list with .map() */}
       <select
         className="type-select"
         value={type}
@@ -24,12 +27,14 @@ function Controls({ search, onSearch, type, onType, kidOnly, onToggleKid }) {
         aria-label="Filter by category"
       >
         {TYPE_OPTIONS.map((opt) => (
+          // `key` gives React a stable id for each option in the list
           <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>
         ))}
       </select>
 
+      {/* Toggle button — the "active" class is added only when kidOnly is true */}
       <button
         type="button"
         className={`kid-toggle${kidOnly ? " active" : ""}`}

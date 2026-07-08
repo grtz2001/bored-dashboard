@@ -15,6 +15,7 @@ function Spotlight({ pick, onSurprise }) {
           <span>{pick.participantsLabel}</span>
           <span className="dot">·</span>
           <span>{pick.priceTier}</span>
+          {/* Show the "learn more" link only when this activity has one */}
           {pick.hasLink && (
             <>
               <span className="dot">·</span>
@@ -25,6 +26,7 @@ function Spotlight({ pick, onSurprise }) {
           )}
         </div>
       </div>
+      {/* Clicking asks the parent to pick a new random activity */}
       <button type="button" className="roll-btn" onClick={onSurprise}>
         ↻ Roll again
       </button>

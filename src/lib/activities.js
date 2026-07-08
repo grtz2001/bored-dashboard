@@ -29,10 +29,12 @@ function cap(s) {
 // Turn a raw API activity into the display-ready shape the components render.
 export function enrich(a) {
   if (!a) return null;
+  // Look up the type's label/color; fall back gracefully for unknown types.
   const meta = TYPE_META[a.type] || { label: a.type || "Other", hue: 60 };
   const price = typeof a.price === "number" ? a.price : 0;
+  // Map the 0–1 price scale to human-readable tiers.
   const priceTier = price === 0 ? "Free" : price <= 0.33 ? "$" : price <= 0.66 ? "$$" : "$$$";
-  const n = a.participants || 1;
+  const n = a.participants || 1; // default to 1 so the label always reads sensibly
   return {
     key: a.key,
     activity: a.activity,
@@ -68,10 +70,12 @@ export function computeStats(all) {
   const free = all.filter((a) => (typeof a.price === "number" ? a.price : 0) === 0).length;
   const kid = all.filter((a) => a.kidFriendly).length;
 
+  // Tally how many activities fall under each type...
   const counts = {};
   all.forEach((a) => {
     counts[a.type] = (counts[a.type] || 0) + 1;
   });
+  // ...then find the type with the highest count (the "mode").
   let topType = null;
   let topN = -1;
   Object.keys(counts).forEach((t) => {

@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     // The Bored API doesn't send CORS headers, so the browser blocks direct
-    // fetches. Proxy them through the dev server (server-to-server, no CORS):
+    // fetches. 
+    // Proxy them through the dev server (server-to-server, no CORS):
     // the app calls /bored/... and Vite forwards it to the real API.
     proxy: {
       '/bored': {
