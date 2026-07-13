@@ -1,8 +1,20 @@
 // One activity row/card, showing several attributes: type, price tier, name,
-// participants, duration, a kid-friendly badge, and a "learn more" link.
-function ActivityCard({ activity }) {
+// participants, duration, a kid-friendly badge, and a link into its detail view.
+// Clicking anywhere on the card opens that activity's detail page.
+function ActivityCard({ activity, onOpen }) {
   return (
-    <div className="activity-card">
+    <div
+      className="activity-card"
+      role="button"
+      tabIndex={0}
+      onClick={() => onOpen(activity.key)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen(activity.key);
+        }
+      }}
+    >
       <div className="activity-top">
         {/* Colored category chip — its colors come from the enriched activity */}
         <span
@@ -31,17 +43,8 @@ function ActivityCard({ activity }) {
       <div className="activity-foot">
         {/* Badge appears only for kid-friendly activities */}
         {activity.kidFriendly && <span className="kid-badge">★ Kid-friendly</span>}
-        {/* "Learn more" link appears only when the activity has a URL */}
-        {activity.hasLink && (
-          <a
-            className="learn-more"
-            href={activity.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn more →
-          </a>
-        )}
+        {/* Affordance hinting the whole card opens the detail view */}
+        <span className="learn-more details-link">Details →</span>
       </div>
     </div>
   );

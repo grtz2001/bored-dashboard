@@ -10,6 +10,7 @@ function Controls({ search, onSearch, type, onType, kidOnly, onToggleKid }) {
         {/* Controlled input: its value comes from state, and every keystroke
             calls onSearch so the parent updates and the list re-filters live. */}
         <input
+          id="dash-search"
           className="search-input"
           type="search"
           value={search}

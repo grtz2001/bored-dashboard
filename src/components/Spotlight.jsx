@@ -1,5 +1,6 @@
 // The dark "try this right now" card inside the hero, with a random pick.
-function Spotlight({ pick, onSurprise }) {
+// Offers a way into the pick's detail view plus a "roll again" reshuffle.
+function Spotlight({ pick, onOpen, onSurprise }) {
   return (
     <div className="spotlight">
       <div className="spotlight-body">
@@ -15,21 +16,18 @@ function Spotlight({ pick, onSurprise }) {
           <span>{pick.participantsLabel}</span>
           <span className="dot">·</span>
           <span>{pick.priceTier}</span>
-          {/* Show the "learn more" link only when this activity has one */}
-          {pick.hasLink && (
-            <>
-              <span className="dot">·</span>
-              <a href={pick.link} target="_blank" rel="noopener noreferrer" className="spotlight-link">
-                learn more →
-              </a>
-            </>
-          )}
         </div>
       </div>
-      {/* Clicking asks the parent to pick a new random activity */}
-      <button type="button" className="roll-btn" onClick={onSurprise}>
-        ↻ Roll again
-      </button>
+      <div className="spotlight-actions">
+        {/* Open the full detail view for the current pick */}
+        <button type="button" className="view-btn" onClick={() => onOpen(pick.key)}>
+          View details →
+        </button>
+        {/* Clicking asks the parent to pick a new random activity */}
+        <button type="button" className="roll-btn" onClick={onSurprise}>
+          ↻ Roll again
+        </button>
+      </div>
     </div>
   );
 }

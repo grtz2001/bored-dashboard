@@ -2,7 +2,7 @@ import ActivityCard from "./ActivityCard.jsx";
 
 // The results section: a count line, then either the grid of cards or an
 // empty state when nothing matches the current filters.
-function ActivityList({ activities, shownCount, total }) {
+function ActivityList({ activities, shownCount, total, onOpen }) {
   // No matches after filtering → show the empty state instead of an empty grid
   const isEmpty = activities.length === 0;
 
@@ -22,7 +22,7 @@ function ActivityList({ activities, shownCount, total }) {
         <div className="activity-grid">
           {/* Render one card per activity; `key` uses the API's unique id */}
           {activities.map((a) => (
-            <ActivityCard key={a.key} activity={a} />
+            <ActivityCard key={a.key} activity={a} onOpen={onOpen} />
           ))}
         </div>
       )}
