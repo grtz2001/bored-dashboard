@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 // A short "About" page explaining the data source and what the two charts show.
-function AboutView({ onHome }) {
+function AboutView() {
   return (
     <div className="panel">
       <div className="about-hero">
-        <a href="#/" className="back-link" onClick={onHome}>← Back to dashboard</a>
+        <Link to="/" className="back-link">← Back to dashboard</Link>
         <h1 className="detail-title">About</h1>
         <p className="about-lead">
           A small dashboard for beating boredom — search real activity ideas, open any one for the

@@ -1,20 +1,11 @@
-// One activity row/card, showing several attributes: type, price tier, name,
-// participants, duration, a kid-friendly badge, and a link into its detail view.
-// Clicking anywhere on the card opens that activity's detail page.
-function ActivityCard({ activity, onOpen }) {
+import { Link } from "react-router-dom";
+
+// One activity card, showing several attributes: type, price tier, name,
+// participants, duration, and a kid-friendly badge. The whole card is a Link
+// into that activity's detail route (keyboard-accessible for free).
+function ActivityCard({ activity }) {
   return (
-    <div
-      className="activity-card"
-      role="button"
-      tabIndex={0}
-      onClick={() => onOpen(activity.key)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onOpen(activity.key);
-        }
-      }}
-    >
+    <Link className="activity-card" to={`/activity/${encodeURIComponent(activity.key)}`}>
       <div className="activity-top">
         {/* Colored category chip — its colors come from the enriched activity */}
         <span
@@ -46,7 +37,7 @@ function ActivityCard({ activity, onOpen }) {
         {/* Affordance hinting the whole card opens the detail view */}
         <span className="learn-more details-link">Details →</span>
       </div>
-    </div>
+    </Link>
   );
 }
 

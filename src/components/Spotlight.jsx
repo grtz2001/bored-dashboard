@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 // The dark "try this right now" card inside the hero, with a random pick.
-// Offers a way into the pick's detail view plus a "roll again" reshuffle.
-function Spotlight({ pick, onOpen, onSurprise }) {
+// Links into the pick's detail view and offers a "roll again" reshuffle.
+function Spotlight({ pick, onSurprise }) {
   return (
     <div className="spotlight">
       <div className="spotlight-body">
@@ -20,9 +22,9 @@ function Spotlight({ pick, onOpen, onSurprise }) {
       </div>
       <div className="spotlight-actions">
         {/* Open the full detail view for the current pick */}
-        <button type="button" className="view-btn" onClick={() => onOpen(pick.key)}>
+        <Link className="view-btn" to={`/activity/${encodeURIComponent(pick.key)}`}>
           View details →
-        </button>
+        </Link>
         {/* Clicking asks the parent to pick a new random activity */}
         <button type="button" className="roll-btn" onClick={onSurprise}>
           ↻ Roll again
